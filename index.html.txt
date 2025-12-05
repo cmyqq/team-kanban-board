@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水仙花数看板</title>
+    <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            padding: 20px;
+        }
+
+        /* 看板标题 */
+        .kanban-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        /* 看板容器（三列布局） */
+        .kanban-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 单个看板列样式 */
+        .kanban-column {
+            background-color: #ebecf0;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        /* 列标题 */
+        .column-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        /* 水仙花数任务卡片 */
+        .narcissistic-card {
+            background-color: #fff;
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .narcissistic-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* 卡片标题（水仙花数） */
+        .card-number {
+            font-size: 20px;
+            font-weight: 600;
+            color: #3498db;
+            margin-bottom: 8px;
+        }
+
+        /* 卡片描述（立方和说明） */
+        .card-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="kanban-header">水仙花数看板</div>
+    
+    <!-- 看板三列容器 -->
+    <div class="kanban-container">
+        <!-- 待办列：待计算水仙花数 -->
+        <div class="kanban-column">
+            <div class="column-title">待办</div>
+            <div class="narcissistic-card">
+                <div class="card-number">任务：计算水仙花数</div>
+                <div class="card-desc">遍历100-999，计算每位数字立方和，筛选符合条件的数</div>
+            </div>
+        </div>
+
+        <!-- 进行中列：计算中的水仙花数 -->
+        <div class="kanban-column">
+            <div class="column-title">进行中</div>
+            <div class="narcissistic-card">
+                <div class="card-number">示例：153</div>
+                <div class="card-desc">1³ + 5³ + 3³ = 1 + 125 + 27 = 153 ✅</div>
+            </div>
+        </div>
+
+        <!-- 已完成列：已找到的水仙花数 -->
+        <div class="kanban-column">
+            <div class="column-title">已完成</div>
+            <div class="narcissistic-card">
+                <div class="card-number">153</div>
+                <div class="card-desc">1³ + 5³ + 3³ = 153</div>
+            </div>
+            <div class="narcissistic-card">
+                <div class="card-number">370</div>
+                <div class="card-desc">3³ + 7³ + 0³ = 370</div>
+            </div>
+            <div class="narcissistic-card">
+                <div class="card-number">371</div>
+                <div class="card-desc">3³ + 7³ + 1³ = 371</div>
+            </div>
+            <div class="narcissistic-card">
+                <div class="card-number">407</div>
+                <div class="card-desc">4³ + 0³ + 7³ = 407</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 基础JS：水仙花数计算逻辑 -->
+    <script>
+        // 计算100-999的所有水仙花数
+        function findNarcissisticNumbers() {
+            const result = [];
+            for (let i = 100; i <= 999; i++) {
+                // 拆分百位、十位、个位
+                const hundreds = Math.floor(i / 100);
+                const tens = Math.floor((i % 100) / 10);
+                const units = i % 10;
+                // 计算各位数字立方和
+                const sum = Math.pow(hundreds, 3) + Math.pow(tens, 3) + Math.pow(units, 3);
+                // 判断是否为水仙花数
+                if (sum === i) {
+                    result.push(i);
+                }
+            }
+            return result;
+        }
+
+        // 控制台打印结果（验证用）
+        console.log('100-999的水仙花数：', findNarcissisticNumbers());
+    </script>
+</body>
+</html>
