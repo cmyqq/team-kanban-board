@@ -1,0 +1,29 @@
+.kanban-container {
+    width: 800px;
+    margin: 50px auto;
+}
+.task-create {
+    margin-bottom: 20px;
+}
+#taskInput {
+    width: 600px;
+    padding: 8px;
+}
+#addTaskBtn {
+    padding: 8px 16px;
+    background: #4299e1;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.task-card {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.delete-btn {
+    color: red;
+    cursor: pointer;
+}
